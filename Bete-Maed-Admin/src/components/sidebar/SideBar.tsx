@@ -24,6 +24,7 @@ import { IconType } from "react-icons";
 import MobileNavigation from "./MobileNavigation";
 import NavigationItems from "./NavigationItems";
 import Dashboard from "../main/Dashboard";
+import Multistep from "../main/Registration";
 
 interface LinkItemProps {
   name: string;
@@ -98,7 +99,8 @@ const SidebarWithHeader = () => {
       {/* mobilenav */}
       <MobileNavigation onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        <Dashboard />
+        {/* <Dashboard /> */}
+        <Multistep />
       </Box>
     </Box>
   );
