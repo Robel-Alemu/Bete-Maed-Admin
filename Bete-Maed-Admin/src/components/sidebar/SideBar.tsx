@@ -10,6 +10,7 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -22,6 +23,7 @@ import { IconType } from "react-icons";
 
 import MobileNavigation from "./MobileNavigation";
 import NavigationItems from "./NavigationItems";
+import Dashboard from "../main/Dashboard";
 
 interface LinkItemProps {
   name: string;
@@ -96,7 +98,7 @@ const SidebarWithHeader = () => {
       {/* mobilenav */}
       <MobileNavigation onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {/* Content */}
+        <Dashboard />
       </Box>
     </Box>
   );
