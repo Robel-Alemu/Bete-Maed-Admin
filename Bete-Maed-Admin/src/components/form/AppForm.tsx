@@ -20,13 +20,7 @@ const AppForm = ({ title, values, children, display }: Props) => {
 
       <Formik initialValues={values} onSubmit={(values) => console.log(values)}>
         <Form>
-          <Box>
-            {children}
-
-            {/* <Button display={display} type="submit">
-              Submit
-            </Button> */}
-          </Box>
+          <Box>{children}</Box>
         </Form>
       </Formik>
     </>

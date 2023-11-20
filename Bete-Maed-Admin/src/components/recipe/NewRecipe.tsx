@@ -1,37 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AppForm from "../form/AppForm";
 import AppInput from "../input/AppInput";
-import {
-  Progress,
-  Box,
-  ButtonGroup,
-  Button,
-  Heading,
-  Flex,
-  FormControl,
-  GridItem,
-  FormLabel,
-  Input,
-  Select,
-  SimpleGrid,
-  InputLeftAddon,
-  InputGroup,
-  Textarea,
-  FormHelperText,
-  InputRightElement,
-} from "@chakra-ui/react";
+import { ButtonGroup, Button, Flex } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 
 const NewRecipe = () => {
-  const toast = useToast();
-
   const [progress, setProgress] = useState(33.33);
   const [step, setStep] = useState(1);
   const Step1 = () => {
     return (
       <>
-        {" "}
         <AppInput name="name" placeholder="First Name" />
         <AppInput name="lastName" placeholder="First Name" />
       </>
@@ -40,7 +19,6 @@ const NewRecipe = () => {
   const Step2 = () => {
     return (
       <>
-        {" "}
         <AppInput name="name2" placeholder="First Name" />
         <AppInput name="lastName2" placeholder="First Name" />
       </>
@@ -49,7 +27,6 @@ const NewRecipe = () => {
   const Step3 = () => {
     return (
       <>
-        {" "}
         <AppInput name="name3" placeholder="First Name" />
         <AppInput name="lastName3" placeholder="First Name" />
       </>
@@ -99,23 +76,7 @@ const NewRecipe = () => {
             <Button variant="solid" colorScheme="red" type="submit">
               Submit
             </Button>
-          ) : // <Button
-          //   w="7rem"
-          //   colorScheme="red"
-          //   variant="solid"
-          //   onClick={() => {
-          //     toast({
-          //       title: "Account created.",
-          //       description: "We've created your account for you.",
-          //       status: "success",
-          //       duration: 3000,
-          //       isClosable: true,
-          //     });
-          //   }}
-          // >
-          //   Submit
-          // </Button>
-          null}
+          ) : null}
         </Flex>
       </ButtonGroup>
     </AppForm>
