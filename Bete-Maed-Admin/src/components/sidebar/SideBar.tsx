@@ -25,6 +25,8 @@ import MobileNavigation from "./MobileNavigation";
 import NavigationItems from "./NavigationItems";
 import Dashboard from "../main/Dashboard";
 import Multistep from "../main/Registration";
+import AppForm from "../form/AppForm";
+import Form1 from "../recipe/NewRecipe";
 
 interface LinkItemProps {
   name: string;
@@ -100,7 +102,9 @@ const SidebarWithHeader = () => {
       <MobileNavigation onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* <Dashboard /> */}
-        <Multistep />
+        {/* <Multistep /> */}
+        {/* <AppForm /> */}
+        <Form1 />
       </Box>
     </Box>
   );
