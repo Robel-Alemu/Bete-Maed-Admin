@@ -9,8 +9,9 @@ interface Props {
   title: string;
   values: initialValues;
   children: ReactNode;
+  display: string;
 }
-const AppForm = ({ title, values, children }: Props) => {
+const AppForm = ({ title, values, children, display }: Props) => {
   return (
     <>
       <Heading w="100%" textAlign="center" fontWeight="normal" mb="2%">
@@ -21,7 +22,10 @@ const AppForm = ({ title, values, children }: Props) => {
         <Form>
           <Box>
             {children}
-            <Button type="submit">Submit</Button>
+
+            {/* <Button display={display} type="submit">
+              Submit
+            </Button> */}
           </Box>
         </Form>
       </Formik>

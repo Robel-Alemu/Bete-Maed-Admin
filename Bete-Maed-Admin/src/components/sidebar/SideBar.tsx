@@ -103,9 +103,9 @@ const SidebarWithHeader = () => {
       <MobileNavigation onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* <Dashboard /> */}
-        <Multistep />
+        {/* <Multistep /> */}
         {/* <AppForm /> */}
-        {/* <NewRecipe /> */}
+        <NewRecipe />
       </Box>
     </Box>
   );
