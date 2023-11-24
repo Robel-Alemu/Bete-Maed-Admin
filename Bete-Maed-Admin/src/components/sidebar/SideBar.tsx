@@ -2,7 +2,6 @@ import {
   Box,
   CloseButton,
   Flex,
-  Icon,
   useColorModeValue,
   Text,
   Drawer,
@@ -10,7 +9,6 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
-  SimpleGrid,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -23,10 +21,7 @@ import { IconType } from "react-icons";
 
 import MobileNavigation from "./MobileNavigation";
 import NavigationItems from "./NavigationItems";
-import Dashboard from "../main/Dashboard";
-import Multistep from "../main/Registration";
-import AppForm from "../form/AppForm";
-import Form1 from "../recipe/NewRecipe";
+
 import NewRecipe from "../recipe/NewRecipe";
 
 interface LinkItemProps {

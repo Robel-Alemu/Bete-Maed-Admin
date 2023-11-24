@@ -2,17 +2,11 @@ import {
   IconButton,
   Avatar,
   Box,
-  CloseButton,
   Flex,
   HStack,
   VStack,
-  Icon,
   useColorModeValue,
   Text,
-  Drawer,
-  DrawerContent,
-  useDisclosure,
-  BoxProps,
   FlexProps,
   Menu,
   MenuButton,
@@ -20,17 +14,7 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-} from "react-icons/fi";
-import { IconType } from "react-icons";
+import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;

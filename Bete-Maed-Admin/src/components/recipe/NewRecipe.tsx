@@ -3,8 +3,6 @@ import AppForm from "../form/AppForm";
 import AppInput from "../input/AppInput";
 import { ButtonGroup, Button, Flex, Progress, Box } from "@chakra-ui/react";
 
-import { useToast } from "@chakra-ui/react";
-
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
   const [step, setStep] = useState(1);
