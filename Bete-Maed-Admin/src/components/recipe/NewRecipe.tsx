@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AppForm from "../form/AppForm";
 import AppInput from "../input/AppInput";
-import { ButtonGroup, Button, Flex } from "@chakra-ui/react";
+import { ButtonGroup, Button, Flex, Progress, Box } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 
@@ -33,53 +33,72 @@ const NewRecipe = () => {
     );
   };
   return (
-    <AppForm
-      title="Add Recipe"
-      values={{ name: "", lastName: "" }}
-      display={step === 3 ? "flex" : "none"}
+    <Box
+      borderWidth="1px"
+      rounded="lg"
+      bg="white"
+      shadow="1px 1px 3px rgba(0,0,0,0.3)"
+      maxWidth={800}
+      p={6}
+      m="10px auto"
+      as="form"
     >
-      <>{step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : <Step3 />}</>
-      <ButtonGroup mt="5%" w="100%">
-        <Flex w="100%" justifyContent="space-between">
-          <Flex>
-            <Button
-              onClick={() => {
-                setStep(step - 1);
-                setProgress(progress - 33.33);
-              }}
-              isDisabled={step === 1}
-              colorScheme="teal"
-              variant="solid"
-              w="7rem"
-              mr="5%"
-            >
-              Back
-            </Button>
-            <Button
-              w="7rem"
-              isDisabled={step === 3}
-              onClick={() => {
-                setStep(step + 1);
-                if (step === 3) {
-                  setProgress(100);
-                } else {
-                  setProgress(progress + 33.33);
-                }
-              }}
-              colorScheme="teal"
-              variant="outline"
-            >
-              Next
-            </Button>
+      <Progress
+        hasStripe
+        value={progress}
+        mb="5%"
+        mx="5%"
+        isAnimated
+      ></Progress>
+
+      <AppForm
+        title="Add Recipe"
+        values={{ name: "", lastName: "" }}
+        display={step === 3 ? "flex" : "none"}
+      >
+        <>{step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : <Step3 />}</>
+        <ButtonGroup mt="5%" w="100%">
+          <Flex w="100%" justifyContent="space-between">
+            <Flex>
+              <Button
+                onClick={() => {
+                  setStep(step - 1);
+                  setProgress(progress - 33.33);
+                }}
+                isDisabled={step === 1}
+                colorScheme="teal"
+                variant="solid"
+                w="7rem"
+                mr="5%"
+              >
+                Back
+              </Button>
+              <Button
+                w="7rem"
+                isDisabled={step === 3}
+                onClick={() => {
+                  setStep(step + 1);
+                  if (step === 3) {
+                    setProgress(100);
+                  } else {
+                    setProgress(progress + 33.33);
+                  }
+                }}
+                colorScheme="teal"
+                variant="outline"
+              >
+                Next
+              </Button>
+            </Flex>
+            {step === 3 ? (
+              <Button variant="solid" colorScheme="red" type="submit">
+                Submit
+              </Button>
+            ) : null}
           </Flex>
-          {step === 3 ? (
-            <Button variant="solid" colorScheme="red" type="submit">
-              Submit
-            </Button>
-          ) : null}
-        </Flex>
-      </ButtonGroup>
-    </AppForm>
+        </ButtonGroup>
+      </AppForm>
+    </Box>
   );
 };
 
