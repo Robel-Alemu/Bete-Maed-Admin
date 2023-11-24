@@ -1,7 +1,17 @@
 import { useState } from "react";
 import AppForm from "../form/AppForm";
 import AppInput from "../input/AppInput";
-import { ButtonGroup, Button, Flex, Progress, Box } from "@chakra-ui/react";
+import {
+  ButtonGroup,
+  Button,
+  Flex,
+  Progress,
+  Box,
+  Stack,
+  Text,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
@@ -9,8 +19,23 @@ const NewRecipe = () => {
   const Step1 = () => {
     return (
       <>
-        <AppInput name="name" placeholder="First Name" />
-        <AppInput name="lastName" placeholder="First Name" />
+        <SimpleGrid spacing={5} columns={2}>
+          <AppInput name="name" placeholder="Recipe Name" />
+          <AppInput name="category" placeholder="Category" />
+          <AppInput name="portion" placeholder="Portion Size" />
+          <AppInput name="duration" placeholder="Duration" />
+          <Box>
+            <Text>Tags</Text>
+            <Stack spacing={5} direction="row">
+              <Checkbox colorScheme="red" defaultChecked>
+                Checkbox
+              </Checkbox>
+              <Checkbox colorScheme="green" defaultChecked>
+                Checkbox
+              </Checkbox>
+            </Stack>
+          </Box>
+        </SimpleGrid>
       </>
     );
   };

@@ -12,7 +12,7 @@ const AppInput = ({ name, placeholder }: Props) => {
       {({ field }: any) => (
         <FormControl>
           <FormLabel htmlFor={name} fontWeight="normal">
-            Last name
+            {placeholder}
           </FormLabel>
           <Input
             {...field}
