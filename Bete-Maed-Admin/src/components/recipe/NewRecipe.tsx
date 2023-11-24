@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppForm from "../form/AppForm";
 import AppInput from "../input/AppInput";
 import {
@@ -16,6 +16,12 @@ import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
   const [step, setStep] = useState(1);
+  const [ingredients, setIngredients] = useState(["ingredient1"]);
+  const addIngredient = () => {
+    const newIngredient = `ingredient${ingredients.length + 1}`;
+    setIngredients([...ingredients, newIngredient]);
+  };
+
   const Step1 = () => {
     return (
       <>
@@ -28,7 +34,7 @@ const NewRecipe = () => {
             <Text>Tags</Text>
             <Stack spacing={5} direction="row">
               <Checkbox colorScheme="red" defaultChecked>
-                Checkbox
+                Tag
               </Checkbox>
               <Checkbox colorScheme="green" defaultChecked>
                 Checkbox
@@ -42,8 +48,23 @@ const NewRecipe = () => {
   const Step2 = () => {
     return (
       <>
-        <AppInput name="name2" placeholder="First Name" />
-        <AppInput name="lastName2" placeholder="First Name" />
+        <AppInput name="ingredient1" placeholder="Ingredient" />
+        <AppInput name="ingredient1" placeholder="Ingredient" />
+        <AppInput name="ingredient1" placeholder="Ingredient" />
+        {ingredients.map((ingredient, index) => (
+          <AppInput key={index} name={ingredient} placeholder="Ingredient" />
+        ))}
+
+        <Button
+          onClick={addIngredient}
+          colorScheme="teal"
+          marginTop={5}
+          variant="solid"
+          w="40%"
+          mr="5%"
+        >
+          Add More Ingredient
+        </Button>
       </>
     );
   };
