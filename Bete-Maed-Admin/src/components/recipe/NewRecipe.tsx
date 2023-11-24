@@ -11,7 +11,7 @@ import {
   Text,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
+import { Checkbox, Textarea } from "@chakra-ui/react";
 
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
@@ -71,8 +71,13 @@ const NewRecipe = () => {
   const Step3 = () => {
     return (
       <>
-        <AppInput name="name3" placeholder="First Name" />
-        <AppInput name="lastName3" placeholder="First Name" />
+        {/* <AppInput name="name3" placeholder="First Name" />
+        <AppInput name="lastName3" placeholder="First Name" /> */}
+        <Textarea placeholder="Step 1" />
+        <Textarea placeholder="Step 1" />
+        <Textarea placeholder="Step 1" />
+        <Textarea placeholder="Step 1" />
+        <Textarea placeholder="Step 1" />
       </>
     );
   };
