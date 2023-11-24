@@ -16,10 +16,20 @@ import { Checkbox, Textarea } from "@chakra-ui/react";
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
   const [step, setStep] = useState(1);
-  const [ingredients, setIngredients] = useState(["ingredient1"]);
+  const [ingredients, setIngredients] = useState([
+    "ingredient1",
+    "ingredient2",
+    "ingredient3",
+    "ingredient4",
+  ]);
+  const [steps, setSteps] = useState(["Step1", "Step2", "Step3", "Step4"]);
   const addIngredient = () => {
     const newIngredient = `ingredient${ingredients.length + 1}`;
     setIngredients([...ingredients, newIngredient]);
+  };
+  const addStep = () => {
+    const newStep = `step${ingredients.length + 1}`;
+    setSteps([...steps, newStep]);
   };
 
   const Step1 = () => {
@@ -48,11 +58,12 @@ const NewRecipe = () => {
   const Step2 = () => {
     return (
       <>
-        <AppInput name="ingredient1" placeholder="Ingredient" />
-        <AppInput name="ingredient1" placeholder="Ingredient" />
-        <AppInput name="ingredient1" placeholder="Ingredient" />
         {ingredients.map((ingredient, index) => (
-          <AppInput key={index} name={ingredient} placeholder="Ingredient" />
+          <AppInput
+            key={index}
+            name={ingredient}
+            placeholder={`ingredient ${index + 1}`}
+          />
         ))}
 
         <Button
@@ -71,13 +82,25 @@ const NewRecipe = () => {
   const Step3 = () => {
     return (
       <>
-        {/* <AppInput name="name3" placeholder="First Name" />
-        <AppInput name="lastName3" placeholder="First Name" /> */}
-        <Textarea placeholder="Step 1" />
-        <Textarea placeholder="Step 1" />
-        <Textarea placeholder="Step 1" />
-        <Textarea placeholder="Step 1" />
-        <Textarea placeholder="Step 1" />
+        {steps.map((step, index) => (
+          <AppInput
+            type="textArea"
+            key={index}
+            name={step}
+            placeholder={`Step ${index + 1}`}
+          />
+        ))}
+
+        <Button
+          onClick={addStep}
+          colorScheme="teal"
+          marginTop={5}
+          variant="solid"
+          w="40%"
+          mr="5%"
+        >
+          Add More Step
+        </Button>
       </>
     );
   };
