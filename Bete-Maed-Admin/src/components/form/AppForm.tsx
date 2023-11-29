@@ -1,5 +1,5 @@
 import { Heading, Button, Box } from "@chakra-ui/react";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import { ReactNode } from "react";
 
 interface initialValues {
@@ -7,21 +7,55 @@ interface initialValues {
 }
 interface Props {
   title: string;
-  values: initialValues;
+  initialValues: any;
   children: ReactNode;
   display: string;
+  handleClick: () => void;
 }
-const AppForm = ({ title, values, children, display }: Props) => {
+
+const AppForm = ({
+  title,
+  initialValues,
+  children,
+  display,
+  handleClick,
+}: //   onSubmit,
+Props) => {
   return (
     <>
       <Heading w="100%" textAlign="center" fontWeight="normal" mb="2%">
         {title}
       </Heading>
 
-      <Formik initialValues={values} onSubmit={(values) => console.log(values)}>
-        <Form>
-          <Box>{children}</Box>
-        </Form>
+      <Formik
+        initialValues={initialValues}
+        // onSubmit={(values) => {
+        //   // Handle form submission logic here
+        //   console.log("Form values:", values);
+        // }}
+        onSubmit={(values) => {
+          console.log({ values });
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        <>
+          <Form>
+            {children}
+            {/* <Field id="firstName" name="firstName" placeholder="First Name" />
+            <button type="submit">Submit</button> */}
+
+            {/* <Box>{children}</Box> */}
+            {/* <Button
+              variant="solid"
+              colorScheme="red"
+              type="submit"
+              onClick={handleClick}
+            >
+              Submit
+            </Button> */}
+            {/* <button type="submit">Submit</button> */}
+          </Form>
+        </>
       </Formik>
     </>
   );

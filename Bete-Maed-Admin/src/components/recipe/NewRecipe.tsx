@@ -12,9 +12,11 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { Checkbox, Textarea } from "@chakra-ui/react";
+import { Form } from "formik";
 
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
+  let objIng: any = [];
   const [step, setStep] = useState(1);
   const [ingredients, setIngredients] = useState([
     "ingredient1",
@@ -22,13 +24,51 @@ const NewRecipe = () => {
     "ingredient3",
     "ingredient4",
   ]);
-  const [steps, setSteps] = useState(["Step1", "Step2", "Step3", "Step4"]);
+  const [steps, setSteps] = useState(["step1", "step2", "step3", "step4"]);
+
+  let values = {
+    name: "",
+    category: "",
+    portion: "",
+    duration: "",
+    ingredient1: "",
+    ingredient2: "",
+    ingredient3: "",
+    ingredient4: "",
+    step1: "",
+    step2: "",
+    step3: "",
+    step4: "",
+  };
+  const stepValues = steps.map((step) => {
+    {
+      step: "";
+    }
+  });
+  const fields = {} as any;
+  const handleNext = () => {
+    ingredients.forEach((field: any) => {
+      fields[field] = "";
+    });
+
+    // steps.forEach((field: any)=> {
+    //     fields[field] = "";
+    // })
+  };
+  const handleClick = () => {
+    ingredients.forEach((element, index) => {
+      objIng.push({ [element]: "" });
+    });
+
+    console.log("converted", objIng);
+  };
+
   const addIngredient = () => {
     const newIngredient = `ingredient${ingredients.length + 1}`;
     setIngredients([...ingredients, newIngredient]);
   };
   const addStep = () => {
-    const newStep = `step${ingredients.length + 1}`;
+    const newStep = `step${steps.length + 1}`;
     setSteps([...steps, newStep]);
   };
 
@@ -41,7 +81,7 @@ const NewRecipe = () => {
           <AppInput name="portion" placeholder="Portion Size" />
           <AppInput name="duration" placeholder="Duration" />
           <Box>
-            <Text>Tags</Text>
+            {/* <Text>Tags</Text>
             <Stack spacing={5} direction="row">
               <Checkbox colorScheme="red" defaultChecked>
                 Tag
@@ -49,7 +89,7 @@ const NewRecipe = () => {
               <Checkbox colorScheme="green" defaultChecked>
                 Checkbox
               </Checkbox>
-            </Stack>
+            </Stack> */}
           </Box>
         </SimpleGrid>
       </>
@@ -113,7 +153,7 @@ const NewRecipe = () => {
       maxWidth={800}
       p={6}
       m="10px auto"
-      as="form"
+      //   as="form"
     >
       <Progress
         hasStripe
@@ -125,10 +165,34 @@ const NewRecipe = () => {
 
       <AppForm
         title="Add Recipe"
-        values={{ name: "", lastName: "" }}
+        // initialValues={{ name: "", category: "", portion: "", duration: "" }}
+        initialValues={{
+          name: "",
+          category: "",
+          portion: "",
+          duration: "",
+          ingredient1: "",
+          ingredient2: "",
+          ingredient3: "",
+          ingredient4: "",
+          step1: "",
+          step2: "",
+          step3: "",
+          step4: "",
+        }}
+        handleClick={handleClick}
         display={step === 3 ? "flex" : "none"}
+        // onSubmit={(values: any) => console.log(values)}
       >
         <>{step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : <Step3 />}</>
+        {/* <Step1 />
+         */}
+
+        {/* <AppInput name="name" placeholder="Recipe Name" />
+        <AppInput name="category" placeholder="Category" />
+        <AppInput name="portion" placeholder="Portion Size" />
+        <AppInput name="duration" placeholder="Duration" />
+        <button onClick={handleClick}>tst</button> */}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -163,7 +227,13 @@ const NewRecipe = () => {
               </Button>
             </Flex>
             {step === 3 ? (
-              <Button variant="solid" colorScheme="red" type="submit">
+              <Button
+                variant="solid"
+                colorScheme="red"
+                type="submit"
+                onSubmit={(values) => console.log(values)}
+                //   onClick={(values) => console.log(values)}
+              >
                 Submit
               </Button>
             ) : null}
