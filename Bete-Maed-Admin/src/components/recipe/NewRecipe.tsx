@@ -10,7 +10,11 @@ import {
   Stack,
   Text,
   SimpleGrid,
+  HStack,
 } from "@chakra-ui/react";
+import { MdClose } from "react-icons/md";
+import { TiDelete } from "react-icons/ti";
+
 import { Checkbox, Textarea } from "@chakra-ui/react";
 import { Form } from "formik";
 import * as Yup from "yup";
@@ -118,12 +122,19 @@ const NewRecipe = () => {
       <>
         {ingredients.map((ingredient, index) => (
           <>
-            <AppInput
-              key={index}
-              name={ingredient}
-              placeholder={`ingredient ${index + 1}`}
-            />
-            <Button onClick={() => removeIngredient(index)}>Remove</Button>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <AppInput
+                key={index}
+                name={ingredient}
+                placeholder={`ingredient ${index + 1}`}
+              />
+
+              <TiDelete
+                size="30px"
+                color="teal"
+                onClick={() => removeIngredient(index)}
+              />
+            </Box>
           </>
         ))}
 
@@ -145,13 +156,19 @@ const NewRecipe = () => {
       <>
         {steps.map((step, index) => (
           <>
-            <AppInput
-              type="textArea"
-              key={index}
-              name={step}
-              placeholder={`Step ${index + 1}`}
-            />
-            <Button onClick={() => removeStep(index)}>Remove</Button>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <AppInput
+                type="textArea"
+                key={index}
+                name={step}
+                placeholder={`Step ${index + 1}`}
+              />
+              <TiDelete
+                size="30px"
+                color="teal"
+                onClick={() => removeStep(index)}
+              />
+            </Box>
           </>
         ))}
 
