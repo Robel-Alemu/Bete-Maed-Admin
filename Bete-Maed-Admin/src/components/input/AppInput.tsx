@@ -1,13 +1,14 @@
 "use client";
 import { FormControl, FormLabel, Input, Textarea } from "@chakra-ui/react";
 import { Field, useFormikContext } from "formik";
+import ErrorMessage from "../ErrorMessage";
 interface Props {
   name: string;
   placeholder: string;
   type?: string;
 }
 const AppInput = ({ name, placeholder, type }: Props) => {
-  const { handleChange, setFieldValue } = useFormikContext();
+  const { handleChange, setFieldValue, errors } = useFormikContext();
   return (
     <Field name={name}>
       {({ field }: any) => (
@@ -28,6 +29,7 @@ const AppInput = ({ name, placeholder, type }: Props) => {
             />
           ) : (
             <Input
+              isRequired
               {...field}
               id={name}
               name={name}

@@ -13,6 +13,14 @@ import {
 } from "@chakra-ui/react";
 import { Checkbox, Textarea } from "@chakra-ui/react";
 import { Form } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required().label("Recipe Name"),
+  category: Yup.string().required().label("Category"),
+  portion: Yup.string().required().label("Portion"),
+  duration: Yup.string().required().label("Duration"),
+});
 
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
@@ -67,6 +75,12 @@ const NewRecipe = () => {
     const newIngredient = `ingredient${ingredients.length + 1}`;
     setIngredients([...ingredients, newIngredient]);
   };
+  const removeIngredient = (index: number) => {
+    const newIngredient = [...ingredients];
+    newIngredient.splice(index, 1);
+    setIngredients(newIngredient);
+    // setIngredients([...ingredients, deleted]);
+  };
   const addStep = () => {
     const newStep = `step${steps.length + 1}`;
     setSteps([...steps, newStep]);
@@ -99,11 +113,14 @@ const NewRecipe = () => {
     return (
       <>
         {ingredients.map((ingredient, index) => (
-          <AppInput
-            key={index}
-            name={ingredient}
-            placeholder={`ingredient ${index + 1}`}
-          />
+          <>
+            <AppInput
+              key={index}
+              name={ingredient}
+              placeholder={`ingredient ${index + 1}`}
+            />
+            <Button onClick={() => removeIngredient(index)}>Remove</Button>
+          </>
         ))}
 
         <Button
@@ -164,6 +181,7 @@ const NewRecipe = () => {
       ></Progress>
 
       <AppForm
+        validationSchema={validationSchema}
         title="Add Recipe"
         // initialValues={{ name: "", category: "", portion: "", duration: "" }}
         initialValues={{

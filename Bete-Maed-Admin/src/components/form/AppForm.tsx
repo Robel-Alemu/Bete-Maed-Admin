@@ -1,60 +1,43 @@
-import { Heading, Button, Box } from "@chakra-ui/react";
-import { Field, Form, Formik } from "formik";
+import { Heading } from "@chakra-ui/react";
+import { Form, Formik, useFormikContext } from "formik";
 import { ReactNode } from "react";
+import ErrorMessage from "../ErrorMessage";
 
-interface initialValues {
-  [key: string]: string;
-}
 interface Props {
   title: string;
   initialValues: any;
   children: ReactNode;
   display: string;
   handleClick: () => void;
+  validationSchema: any;
 }
 
 const AppForm = ({
   title,
   initialValues,
   children,
-  display,
-  handleClick,
-}: //   onSubmit,
-Props) => {
+  validationSchema,
+}: Props) => {
+  //   const { errors } = useFormikContext();
+
   return (
     <>
       <Heading w="100%" textAlign="center" fontWeight="normal" mb="2%">
         {title}
       </Heading>
 
+      {/* <ErrorMessage error={errors} visible={true} /> */}
+
       <Formik
+        validationSchema={validationSchema}
         initialValues={initialValues}
-        // onSubmit={(values) => {
-        //   // Handle form submission logic here
-        //   console.log("Form values:", values);
-        // }}
-        onSubmit={(values) => {
-          console.log({ values });
+        onSubmit={(values, error) => {
+          console.log({ values, error });
           alert(JSON.stringify(values, null, 2));
         }}
       >
         <>
-          <Form>
-            {children}
-            {/* <Field id="firstName" name="firstName" placeholder="First Name" />
-            <button type="submit">Submit</button> */}
-
-            {/* <Box>{children}</Box> */}
-            {/* <Button
-              variant="solid"
-              colorScheme="red"
-              type="submit"
-              onClick={handleClick}
-            >
-              Submit
-            </Button> */}
-            {/* <button type="submit">Submit</button> */}
-          </Form>
+          <Form>{children}</Form>
         </>
       </Formik>
     </>
