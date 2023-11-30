@@ -79,7 +79,11 @@ const NewRecipe = () => {
     const newIngredient = [...ingredients];
     newIngredient.splice(index, 1);
     setIngredients(newIngredient);
-    // setIngredients([...ingredients, deleted]);
+  };
+  const removeStep = (index: number) => {
+    const newStep = [...steps];
+    newStep.splice(index, 1);
+    setSteps(newStep);
   };
   const addStep = () => {
     const newStep = `step${steps.length + 1}`;
@@ -140,12 +144,15 @@ const NewRecipe = () => {
     return (
       <>
         {steps.map((step, index) => (
-          <AppInput
-            type="textArea"
-            key={index}
-            name={step}
-            placeholder={`Step ${index + 1}`}
-          />
+          <>
+            <AppInput
+              type="textArea"
+              key={index}
+              name={step}
+              placeholder={`Step ${index + 1}`}
+            />
+            <Button onClick={() => removeStep(index)}>Remove</Button>
+          </>
         ))}
 
         <Button
