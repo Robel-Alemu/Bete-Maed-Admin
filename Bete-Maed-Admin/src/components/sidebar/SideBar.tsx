@@ -23,6 +23,7 @@ import MobileNavigation from "./MobileNavigation";
 import NavigationItems from "./NavigationItems";
 
 import NewRecipe from "../recipe/NewRecipe";
+import RegisterVendor from "../vendor/RegisterVendor";
 
 interface LinkItemProps {
   name: string;
@@ -101,6 +102,7 @@ const SidebarWithHeader = () => {
         {/* <Multistep /> */}
         {/* <AppForm /> */}
         <NewRecipe />
+        <RegisterVendor />
       </Box>
     </Box>
   );

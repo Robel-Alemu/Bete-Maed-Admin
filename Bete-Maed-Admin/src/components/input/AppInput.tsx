@@ -1,14 +1,20 @@
 "use client";
 import { FormControl, FormLabel, Input, Textarea } from "@chakra-ui/react";
-import { Field, useFormikContext } from "formik";
-import ErrorMessage from "../ErrorMessage";
+import { Field, useFormikContext, ErrorMessage } from "formik";
+import AppErrorMessage from "../AppErrorMessage";
+
 interface Props {
   name: string;
   placeholder: string;
   type?: string;
 }
 const AppInput = ({ name, placeholder, type }: Props) => {
-  const { handleChange, setFieldValue, errors } = useFormikContext();
+  const { handleChange, setFieldValue, errors, touched } = useFormikContext<{
+    [key: string]: any;
+  }>();
+  // {
+  //   errors && <ErrorMessage error={errors} visible={true} />;
+  // }
   return (
     <Field name={name}>
       {({ field }: any) => (
@@ -40,6 +46,8 @@ const AppInput = ({ name, placeholder, type }: Props) => {
               }}
             />
           )}
+
+          <AppErrorMessage error={errors[name]} visible={touched[name]} />
         </FormControl>
       )}
     </Field>

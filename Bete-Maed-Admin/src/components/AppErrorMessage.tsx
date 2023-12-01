@@ -3,14 +3,26 @@ import {
   AlertDescription,
   AlertIcon,
   AlertTitle,
+  Button,
   Text,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 
 interface Props {
   error: any;
-  visible: boolean;
+  visible: any;
 }
-const ErrorMessage = ({ error, visible }: Props) => {
+const AppErrorMessage = ({ error, visible }: Props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   if (!visible || !error) return null;
   return (
     <Alert status="error">
@@ -21,4 +33,4 @@ const ErrorMessage = ({ error, visible }: Props) => {
   );
 };
 
-export default ErrorMessage;
+export default AppErrorMessage;

@@ -67,13 +67,13 @@ const NewRecipe = () => {
     //     fields[field] = "";
     // })
   };
-  const handleClick = () => {
-    ingredients.forEach((element, index) => {
-      objIng.push({ [element]: "" });
-    });
+  //   const handleClick = () => {
+  //     ingredients.forEach((element, index) => {
+  //       objIng.push({ [element]: "" });
+  //     });
 
-    console.log("converted", objIng);
-  };
+  //     console.log("converted", objIng);
+  //   };
 
   const addIngredient = () => {
     const newIngredient = `ingredient${ingredients.length + 1}`;
@@ -222,7 +222,7 @@ const NewRecipe = () => {
           step3: "",
           step4: "",
         }}
-        handleClick={handleClick}
+        // handleClick={handleClick}
         display={step === 3 ? "flex" : "none"}
         // onSubmit={(values: any) => console.log(values)}
       >
