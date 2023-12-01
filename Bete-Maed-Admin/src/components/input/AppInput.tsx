@@ -12,9 +12,7 @@ const AppInput = ({ name, placeholder, type }: Props) => {
   const { handleChange, setFieldValue, errors, touched } = useFormikContext<{
     [key: string]: any;
   }>();
-  // {
-  //   errors && <ErrorMessage error={errors} visible={true} />;
-  // }
+
   return (
     <Field name={name}>
       {({ field }: any) => (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AppForm from "../form/AppForm";
 import AppInput from "../input/AppInput";
 import {
@@ -7,16 +7,11 @@ import {
   Flex,
   Progress,
   Box,
-  Stack,
-  Text,
   SimpleGrid,
-  HStack,
 } from "@chakra-ui/react";
-import { MdClose } from "react-icons/md";
+
 import { TiDelete } from "react-icons/ti";
 
-import { Checkbox, Textarea } from "@chakra-ui/react";
-import { Form } from "formik";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object().shape({
@@ -28,52 +23,13 @@ const validationSchema = Yup.object().shape({
 
 const NewRecipe = () => {
   const [progress, setProgress] = useState(33.33);
-  let objIng: any = [];
   const [step, setStep] = useState(1);
   const [ingredients, setIngredients] = useState([
     "ingredient1",
     "ingredient2",
     "ingredient3",
-    "ingredient4",
   ]);
-  const [steps, setSteps] = useState(["step1", "step2", "step3", "step4"]);
-
-  let values = {
-    name: "",
-    category: "",
-    portion: "",
-    duration: "",
-    ingredient1: "",
-    ingredient2: "",
-    ingredient3: "",
-    ingredient4: "",
-    step1: "",
-    step2: "",
-    step3: "",
-    step4: "",
-  };
-  const stepValues = steps.map((step) => {
-    {
-      step: "";
-    }
-  });
-  const fields = {} as any;
-  const handleNext = () => {
-    ingredients.forEach((field: any) => {
-      fields[field] = "";
-    });
-
-    // steps.forEach((field: any)=> {
-    //     fields[field] = "";
-    // })
-  };
-  //   const handleClick = () => {
-  //     ingredients.forEach((element, index) => {
-  //       objIng.push({ [element]: "" });
-  //     });
-
-  //     console.log("converted", objIng);
-  //   };
+  const [steps, setSteps] = useState(["step1", "step2", "step3"]);
 
   const addIngredient = () => {
     const newIngredient = `ingredient${ingredients.length + 1}`;
@@ -97,23 +53,13 @@ const NewRecipe = () => {
   const Step1 = () => {
     return (
       <>
-        <SimpleGrid spacing={5} columns={2}>
+        <SimpleGrid marginBottom={5} spacing={5} columns={2}>
           <AppInput name="name" placeholder="Recipe Name" />
           <AppInput name="category" placeholder="Category" />
           <AppInput name="portion" placeholder="Portion Size" />
           <AppInput name="duration" placeholder="Duration" />
-          <Box>
-            {/* <Text>Tags</Text>
-            <Stack spacing={5} direction="row">
-              <Checkbox colorScheme="red" defaultChecked>
-                Tag
-              </Checkbox>
-              <Checkbox colorScheme="green" defaultChecked>
-                Checkbox
-              </Checkbox>
-            </Stack> */}
-          </Box>
         </SimpleGrid>
+        <AppInput type="textArea" name="tags" placeholder="Tags" />
       </>
     );
   };
@@ -194,7 +140,6 @@ const NewRecipe = () => {
       maxWidth={800}
       p={6}
       m="10px auto"
-      //   as="form"
     >
       <Progress
         hasStripe
@@ -207,34 +152,23 @@ const NewRecipe = () => {
       <AppForm
         validationSchema={validationSchema}
         title="Add Recipe"
-        // initialValues={{ name: "", category: "", portion: "", duration: "" }}
         initialValues={{
           name: "",
           category: "",
           portion: "",
           duration: "",
+          tags: "",
           ingredient1: "",
           ingredient2: "",
           ingredient3: "",
-          ingredient4: "",
           step1: "",
           step2: "",
           step3: "",
-          step4: "",
         }}
-        // handleClick={handleClick}
         display={step === 3 ? "flex" : "none"}
-        // onSubmit={(values: any) => console.log(values)}
       >
         <>{step === 1 ? <Step1 /> : step === 2 ? <Step2 /> : <Step3 />}</>
-        {/* <Step1 />
-         */}
 
-        {/* <AppInput name="name" placeholder="Recipe Name" />
-        <AppInput name="category" placeholder="Category" />
-        <AppInput name="portion" placeholder="Portion Size" />
-        <AppInput name="duration" placeholder="Duration" />
-        <button onClick={handleClick}>tst</button> */}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -274,7 +208,6 @@ const NewRecipe = () => {
                 colorScheme="red"
                 type="submit"
                 onSubmit={(values) => console.log(values)}
-                //   onClick={(values) => console.log(values)}
               >
                 Submit
               </Button>
