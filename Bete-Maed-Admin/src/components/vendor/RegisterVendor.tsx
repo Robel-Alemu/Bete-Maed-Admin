@@ -1,5 +1,4 @@
 import { Box, Button, SimpleGrid } from "@chakra-ui/react";
-import React from "react";
 import AppInput from "../input/AppInput";
 import AppForm from "../form/AppForm";
 import * as Yup from "yup";
@@ -26,7 +25,6 @@ const RegisterVendor = () => {
       <AppForm
         validationSchema={validationSchema}
         title="Register vendor"
-        // initialValues={{ name: "", category: "", portion: "", duration: "" }}
         initialValues={{
           vendorName: "",
           address: "",
